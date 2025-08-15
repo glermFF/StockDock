@@ -1,0 +1,21 @@
+services:
+  stockDock-psql:
+    image: postgres:17-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER: psql-stockDock
+      - POSTGRES_PASSWORD: stockpsql
+    volumes:
+      #-
+    networks:
+      - backend
+  pgadmin:
+    image: dpage/pgadmin4:9.3.0
+    ports:
+      - "8000:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=web@ufop.edu.br
+      - PGADMIN_DEFAULT_PASSWORD=pgmaster
+    networks:
+      - backend
