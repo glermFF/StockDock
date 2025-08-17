@@ -4,10 +4,11 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER: psql-stockDock
-      - POSTGRES_PASSWORD: stockpsql
+      - POSTGRES_USER=psql-stockDock
+      - POSTGRES_PASSWORD=stockpsql
     volumes:
-      #-
+      - ./1-users-database.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./2-wallets-database.sql:/docker-entrypoint-initdb.d/2.sql
     networks:
       - backend
   pgadmin:
@@ -19,3 +20,6 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=pgmaster
     networks:
       - backend
+
+networks:
+  backend:
