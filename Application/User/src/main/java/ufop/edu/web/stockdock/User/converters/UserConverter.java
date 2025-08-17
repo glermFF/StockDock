@@ -1,7 +1,5 @@
 package ufop.edu.web.stockdock.User.converters;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
-
 import lombok.NoArgsConstructor;
 import ufop.edu.web.stockdock.User.domain.UserDomain;
 import ufop.edu.web.stockdock.User.dtos.CreateUserDTO;

@@ -1,7 +1,7 @@
-# 📈 Invest Portfolio System
+# 📈 StockDock
 
 ## 📝 Descrição
-O **Invest Portfolio System** é uma aplicação baseada em microserviços para gerenciamento de carteiras de investimentos.  
+O StockDock é uma aplicação baseada em microserviços para gerenciamento de carteiras de investimentos.  
 O objetivo é permitir que usuários criem e gerenciem múltiplas carteiras, cada uma contendo diferentes tipos de ativos como **Fundos Imobiliários (FI)**, **Ações** e **Criptomoedas**.  
 O sistema também envia notificações sobre eventos relevantes e disponibiliza dados de forma centralizada via API Gateway.
 
@@ -9,7 +9,7 @@ O sistema também envia notificações sobre eventos relevantes e disponibiliza 
 
 ## 🏗 Arquitetura
 
-O sistema segue o modelo **Microservices Architecture**, onde cada serviço é responsável por uma função específica.  
+O sistema segue o modelo microsserviços, onde cada serviço é responsável por uma função específica.  
 A comunicação entre serviços é feita por **mensageria** usando Kafka, além de chamadas HTTP internas controladas via **Eureka Server** (Service Discovery).  
 O **API Gateway** centraliza o acesso aos microsserviços, gerenciando autenticação e roteamento.
 

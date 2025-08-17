@@ -18,9 +18,14 @@ public class UserController {
 
     private final UserService userService;
 
+    @GetMapping("/status")
+    public ResponseEntity<String> status(){
+        return ResponseEntity.ok("Servidor rodadndo");
+    }
+
     @GetMapping("/all-users")
     public ResponseEntity<List<SimpleUserRecordDTO>> getAllUsers(){
-        
+
         List<SimpleUserRecordDTO> list = userService.getAllUsers();
         return ResponseEntity.ok(list);
     } 
