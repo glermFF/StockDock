@@ -10,11 +10,11 @@ import ufop.edu.web.stockdock.User.model.UserModel;
 public class UserConverter {
     // record --> model
     public static SimpleUserRecordDTO toUserRecordDTO(UserModel userModel){
-        return new SimpleUserRecordDTO(userModel.getId(), userModel.getUsername(), userModel.getFullname(), userModel.getEmail(), userModel.getPassword(), userModel.getId()); //! acrescentar WalletModel
+        return new SimpleUserRecordDTO(userModel.getId(), userModel.getUsername(), userModel.getFullname(), userModel.getEmail(), userModel.getPassword()); //! acrescentar WalletModel
     }
     // model --> domain
     public static UserModel toUserModel(UserDomain userDomain){
-        return UserModel.builder().id(userDomain.getId()).fullname(userDomain.getFullname()).email(userDomain.getEmail()).password(userDomain.getPassword()).build(); //! acrescentar WalletModel
+        return UserModel.builder().id(userDomain.getId()).username(userDomain.getFullname()).fullname(userDomain.getFullname()).email(userDomain.getEmail()).password(userDomain.getPassword()).build(); //! acrescentar WalletModel
     }
     // domain --> requisitions
     public static UserDomain toUserDomain(CreateUserDTO createUserDTO){

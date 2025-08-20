@@ -11,7 +11,7 @@ public class GatewayApiConfig {
     @Bean
     public RouteLocator gatewayRouter(RouteLocatorBuilder builder){
         return builder.routes()
-        .route("users", p -> p .path("/users/**").uri("lb://sd-users-serivce"))
+        .route("users", p -> p .path("/sd_users/**").uri("lb://sd-users-service"))
         .route("wallets", p -> p .path("/wallets/**").uri("lb://sd-wallets-serivce")).build();
     }
 }
