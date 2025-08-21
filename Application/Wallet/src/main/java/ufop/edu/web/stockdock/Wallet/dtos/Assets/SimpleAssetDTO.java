@@ -1,4 +1,4 @@
-package ufop.edu.web.stockdock.Wallet.dtos;
+package ufop.edu.web.stockdock.Wallet.dtos.Assets;
 
 import java.util.UUID;
 

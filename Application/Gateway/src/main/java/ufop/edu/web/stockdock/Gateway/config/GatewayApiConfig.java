@@ -12,6 +12,7 @@ public class GatewayApiConfig {
     public RouteLocator gatewayRouter(RouteLocatorBuilder builder){
         return builder.routes()
         .route("users", p -> p .path("/sd_users/**").uri("lb://sd-users-service"))
-        .route("wallets", p -> p .path("/wallets/**").uri("lb://sd-wallets-serivce")).build();
+        .route("wallets", p -> p .path("/wallets/**").uri("lb://sd-wallets-serivce"))
+        .route("assets", p -> p .path("/assets/**").uri("lb://sd-wallets-serivce")).build();
     }
 }

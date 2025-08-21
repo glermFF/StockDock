@@ -10,4 +10,5 @@ import ufop.edu.web.stockdock.User.model.UserModel;
 public interface IUserRepo extends JpaRepository<UserModel, UUID>{
     
     List<UserModel> findByUsername(String username);
+    List<UserModel> findByEmail(String email);
 }

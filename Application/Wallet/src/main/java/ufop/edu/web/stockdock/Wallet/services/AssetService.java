@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import ufop.edu.web.stockdock.Wallet.converter.AssetConverter;
-import ufop.edu.web.stockdock.Wallet.dtos.SimpleAssetDTO;
+import ufop.edu.web.stockdock.Wallet.dtos.Assets.SimpleAssetDTO;
 import ufop.edu.web.stockdock.Wallet.model.AssetModel;
 import ufop.edu.web.stockdock.Wallet.repo.IAssetRepository;
 

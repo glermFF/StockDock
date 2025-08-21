@@ -1,7 +1,7 @@
 package ufop.edu.web.stockdock.Wallet.converter;
 
 import ufop.edu.web.stockdock.Wallet.domain.AssetDomain;
-import ufop.edu.web.stockdock.Wallet.dtos.SimpleAssetDTO;
+import ufop.edu.web.stockdock.Wallet.dtos.Assets.SimpleAssetDTO;
 import ufop.edu.web.stockdock.Wallet.model.AssetModel;
 
 public class AssetConverter {
