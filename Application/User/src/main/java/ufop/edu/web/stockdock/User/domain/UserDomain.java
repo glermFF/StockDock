@@ -25,8 +25,6 @@ public class UserDomain {
 
     private String password;
 
-    // private WalletModel walletModel;
-
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

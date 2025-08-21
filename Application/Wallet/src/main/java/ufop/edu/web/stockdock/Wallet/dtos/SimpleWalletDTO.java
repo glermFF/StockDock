@@ -2,4 +2,6 @@ package ufop.edu.web.stockdock.Wallet.dtos;
 
 import java.util.UUID;
 
-public record SimpleWalletDTO(UUID id, String walletName, String type) {}
+import ufop.edu.web.stockdock.Wallet.enums.WalletEnumType;
+
+public record SimpleWalletDTO(UUID id, String walletName, WalletEnumType type) {}

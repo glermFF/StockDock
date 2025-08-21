@@ -14,6 +14,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ufop.edu.web.stockdock.Wallet.enums.WalletEnumType;
 
 @Entity(name = "wallets_tb")
 
@@ -30,7 +31,7 @@ public class WalletModel {
 
     private String walletName;
 
-    private String type;
+    private WalletEnumType type;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
