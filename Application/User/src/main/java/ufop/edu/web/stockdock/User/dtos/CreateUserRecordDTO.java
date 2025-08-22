@@ -1,5 +1,3 @@
 package ufop.edu.web.stockdock.User.dtos;
 
-import java.util.UUID;
-
-public record CreateUserRecordDTO(UUID id, String username, String fullname, String email, String password) {}
+public record CreateUserRecordDTO(String username, String fullname, String email, String password) {}

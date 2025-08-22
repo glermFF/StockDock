@@ -2,6 +2,7 @@ package ufop.edu.web.stockdock.Wallet.converter;
 
 import lombok.NoArgsConstructor;
 import ufop.edu.web.stockdock.Wallet.domain.WalletDomain;
+import ufop.edu.web.stockdock.Wallet.dtos.CreateWalletDTO;
 import ufop.edu.web.stockdock.Wallet.dtos.SimpleWalletDTO;
 import ufop.edu.web.stockdock.Wallet.model.WalletModel;
 
@@ -16,7 +17,7 @@ public class WalletConverter {
         return WalletModel.builder().id(walletDomain.getId()).walletName(walletDomain.getWalletName()).type(walletDomain.getType()).build();
     }
 
-    // public static WalletDomain toWalletDomain(){
-
-    // }
+    public static WalletDomain toWalletDomain(CreateWalletDTO createWalletDTO){
+        return WalletDomain.builder().walletName(createWalletDTO.walletName()).type(createWalletDTO.type()).build();
+    }
 }

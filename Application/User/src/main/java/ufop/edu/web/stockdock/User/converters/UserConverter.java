@@ -19,7 +19,7 @@ public class UserConverter {
     }
     // domain --> requisitions
     public static UserDomain toUserDomain(CreateUserRecordDTO createUserDTO){
-        return UserDomain.builder().id(createUserDTO.id()).username(createUserDTO.username()).fullname(createUserDTO.fullname()).email(createUserDTO.email()).password(createUserDTO.password()).build();
+        return UserDomain.builder().username(createUserDTO.username()).fullname(createUserDTO.fullname()).email(createUserDTO.email()).password(createUserDTO.password()).build();
     }
 
     public static UserDomain toUserDomain(UpdateUserDTO updateUserDTO){

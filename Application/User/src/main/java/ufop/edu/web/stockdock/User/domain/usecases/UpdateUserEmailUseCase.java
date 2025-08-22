@@ -11,7 +11,7 @@ public class UpdateUserEmailUseCase {
     private String emailPassed;
 
     public void validate(){
-
+        validateEmail();
     }
 
     public void validateEmail(){
