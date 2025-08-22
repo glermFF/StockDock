@@ -13,7 +13,6 @@ import ufop.edu.web.stockdock.Wallet.dtos.CreateWalletDTO;
 import ufop.edu.web.stockdock.Wallet.dtos.DeleteWalletDTO;
 import ufop.edu.web.stockdock.Wallet.dtos.SimpleWalletDTO;
 import ufop.edu.web.stockdock.Wallet.dtos.UpdateWalletName;
-import ufop.edu.web.stockdock.Wallet.enums.WalletEnumType;
 import ufop.edu.web.stockdock.Wallet.model.WalletModel;
 import ufop.edu.web.stockdock.Wallet.repo.IWalletRepository;
 
@@ -51,10 +50,10 @@ public class WalletService {
 
         model.setWalletName(updateWalletName.getNewWalletName());
 
-        return WalletConverter.toWalletDTO(model);
+        return WalletConverter.toWalletDTO(walletRepository.save(model));
     }
 
-    public void deleteWallet(DeleteWalletDTO deleteWalletDTO){
+    public void removeWallet(DeleteWalletDTO deleteWalletDTO){
         Optional<WalletModel> optionalModel = walletRepository.findById(deleteWalletDTO.id());
         
         walletRepository.delete(optionalModel.get());

@@ -17,8 +17,6 @@ import ufop.edu.web.stockdock.User.dtos.CreateUserRecordDTO;
 import ufop.edu.web.stockdock.User.dtos.DeleteUserRecordDTO;
 import ufop.edu.web.stockdock.User.dtos.SimpleUserRecordDTO;
 import ufop.edu.web.stockdock.User.dtos.UpdateUserDTO;
-import ufop.edu.web.stockdock.User.model.UserModel;
-import ufop.edu.web.stockdock.User.repository.IUserRepo;
 import ufop.edu.web.stockdock.User.services.UserService;
 
 @RestController
@@ -26,7 +24,6 @@ import ufop.edu.web.stockdock.User.services.UserService;
 @AllArgsConstructor
 public class UserController {
 
-    private final IUserRepo userRepo;
     private final UserService userService;
 
     @GetMapping("/status")
@@ -42,7 +39,7 @@ public class UserController {
     } 
 
     
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<SimpleUserRecordDTO> createUser(@RequestBody CreateUserRecordDTO createUserDTO){
         
         SimpleUserRecordDTO userDto = userService.createUser(createUserDTO);
@@ -55,6 +52,7 @@ public class UserController {
         SimpleUserRecordDTO userRecord = userService.updateUser(updateUserDTO);
 
         if(userRecord == null){
+            System.out.println("Not user not found");
             return ResponseEntity.notFound().build();
         }
 
@@ -64,9 +62,7 @@ public class UserController {
     @DeleteMapping("/delete")
     public ResponseEntity<Object> deleteUser(@RequestBody DeleteUserRecordDTO deleteUserRecordDTO){
 
-        Optional<UserModel> deleteModel = userRepo.findById(deleteUserRecordDTO.id());
-
         userService.deleteUser(deleteUserRecordDTO);
-        return ResponseEntity.ok("Usuário foi removido\n" + deleteModel);
+        return ResponseEntity.ok("Usuário foi removido");
     }
 }

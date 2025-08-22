@@ -15,7 +15,7 @@ public class UserConverter {
     }
     // model --> domain
     public static UserModel toUserModel(UserDomain userDomain){
-        return UserModel.builder().id(userDomain.getId()).username(userDomain.getFullname()).fullname(userDomain.getFullname()).email(userDomain.getEmail()).password(userDomain.getPassword()).build();
+        return UserModel.builder().id(userDomain.getId()).username(userDomain.getUsername()).fullname(userDomain.getFullname()).email(userDomain.getEmail()).password(userDomain.getPassword()).build();
     }
     // domain --> requisitions
     public static UserDomain toUserDomain(CreateUserRecordDTO createUserDTO){

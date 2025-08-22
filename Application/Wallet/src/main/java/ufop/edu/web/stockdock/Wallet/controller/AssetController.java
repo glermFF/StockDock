@@ -26,7 +26,7 @@ public class AssetController {
         return ResponseEntity.ok("Assets API running");
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<SimpleAssetDTO> createAsset(@RequestBody CreateAssetDTO createAssetDTO){
 
         SimpleAssetDTO assetDTO = assetService.createAsset(createAssetDTO);

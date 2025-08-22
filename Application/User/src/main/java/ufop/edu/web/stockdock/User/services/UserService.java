@@ -45,9 +45,9 @@ public class UserService {
         UserDomain userDomain = UserConverter.toUserDomain(updateUserDTO);
         UserModel userModel = UserConverter.toUserModel(userDomain);
 
-        List<UserModel> list = userRepo.findByUsername(updateUserDTO.getUsername());
+        Optional<UserModel> optionalList = userRepo.findById(updateUserDTO.getId());
 
-        if(list.isEmpty()){
+        if(optionalList.isEmpty()){
             return null;
         }
     
