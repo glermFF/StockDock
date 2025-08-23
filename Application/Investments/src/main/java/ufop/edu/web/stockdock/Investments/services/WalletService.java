@@ -34,8 +34,6 @@ public class WalletService {
         WalletDomain domain = WalletConverter.toWalletDomain(createWalletDTO);
         WalletModel model = WalletConverter.toWalletModel(domain);
 
-        // model.setType(WalletEnumType.INVESTIMENTO);
-
         return WalletConverter.toWalletDTO(walletRepository.save(model));
     }
 

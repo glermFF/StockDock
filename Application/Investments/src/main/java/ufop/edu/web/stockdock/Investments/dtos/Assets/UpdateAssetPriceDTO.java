@@ -1,4 +1,4 @@
-package ufop.edu.web.stockdock.Investments.dtos;
+package ufop.edu.web.stockdock.Investments.dtos.Assets;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -10,14 +10,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class UpdateWalletName {
+@AllArgsConstructor
+public class UpdateAssetPriceDTO {
     
     private UUID id;
 
-    private String walletNameModel;
-    private String newWalletName;
+    private Double priceModel;
+    private Double newPrice;
 
     private LocalDateTime updatedAt;
 }

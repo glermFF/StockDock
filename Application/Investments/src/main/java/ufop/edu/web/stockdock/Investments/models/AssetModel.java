@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,12 +35,21 @@ public class AssetModel {
 
     private AssetEnumType type;
 
+    private Integer quantity;
+
     private Double currentPrice;
 
     private LocalDateTime purchasedAt;
+    private LocalDateTime updatedAt;
 
     @PrePersist
     public void antesGravar() {
         this.purchasedAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void antesAtualizar(){
+        this.updatedAt = LocalDateTime.now();
     }
 }

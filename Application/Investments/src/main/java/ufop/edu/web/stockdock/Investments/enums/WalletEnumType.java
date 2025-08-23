@@ -7,10 +7,10 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum WalletEnumType {
     
-    PESSOAL(1, "Carteira Pessoal"),
-    EMPRESARIAL(2, "Carteira Empressarial"),
-    CONJUNTA(3, "Carteira Conjunta"),
-    INVESTIMENTO(4, "Carteira de Investimentos");
+    CRIPTOS(1, "Carteira de Criptos"),
+    ACOES(2, "Carteira de Ações"),
+    PERSONALIZADA(3, "Carteira Personalizada"),
+    INVESTIMENTOS(4, "Carteira de Investimentos");
 
     private Integer id;
     private String description;

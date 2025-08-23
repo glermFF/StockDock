@@ -18,7 +18,7 @@ import ufop.edu.web.stockdock.Investments.dtos.DeleteWalletDTO;
 import ufop.edu.web.stockdock.Investments.dtos.SimpleWalletDTO;
 import ufop.edu.web.stockdock.Investments.dtos.UpdateWalletName;
 
-@RequestMapping("/sd_wallets")
+@RequestMapping("/investments_wallet")
 @RestController
 @AllArgsConstructor
 public class WalletController {
@@ -30,14 +30,14 @@ public class WalletController {
         return ResponseEntity.ok("Serviço de Carteiras rodando");
     }
 
-    @GetMapping("/all-wallets")
+    @GetMapping("/")
     public ResponseEntity<List<SimpleWalletDTO>> getAllWallets(){
         
         List<SimpleWalletDTO> walletList = walletService.getAllWallets();
         return ResponseEntity.ok(walletList);
     }
  
-    @PostMapping("/")
+    @PostMapping("/invest-new-wallet")
     public ResponseEntity<SimpleWalletDTO> createWallet(@RequestBody CreateWalletDTO createWalletDTO){
         
         SimpleWalletDTO walletDTO = walletService.createWallet(createWalletDTO);
@@ -49,9 +49,7 @@ public class WalletController {
 
         SimpleWalletDTO walletDTO = walletService.updateWalletName(updateWalletName);
 
-        if(walletDTO == null){
-            return ResponseEntity.notFound().build();
-        }
+        if(walletDTO == null){ return ResponseEntity.notFound().build(); }
 
         return ResponseEntity.ok(walletDTO);
     }
