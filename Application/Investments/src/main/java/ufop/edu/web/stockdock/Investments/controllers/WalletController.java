@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 import ufop.edu.web.stockdock.Investments.dtos.CreateWalletDTO;
 import ufop.edu.web.stockdock.Investments.dtos.DeleteWalletDTO;
 import ufop.edu.web.stockdock.Investments.dtos.SimpleWalletDTO;
+import ufop.edu.web.stockdock.Investments.dtos.UpdateWalletDTO;
 import ufop.edu.web.stockdock.Investments.dtos.UpdateWalletName;
 
 @RequestMapping("/investments_wallet")
@@ -50,6 +51,14 @@ public class WalletController {
         SimpleWalletDTO walletDTO = walletService.updateWalletName(updateWalletName);
 
         if(walletDTO == null){ return ResponseEntity.notFound().build(); }
+
+        return ResponseEntity.ok(walletDTO);
+    }
+
+    @PutMapping("/update-wallet")
+    public ResponseEntity<SimpleWalletDTO> updateWallet(@RequestBody UpdateWalletDTO updateWalletDTO){
+
+        SimpleWalletDTO walletDTO = walletService.updateWallet(updateWalletDTO);
 
         return ResponseEntity.ok(walletDTO);
     }

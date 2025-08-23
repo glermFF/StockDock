@@ -9,11 +9,11 @@ export interface IAsset {
 
 export interface IPortfolio {
   id: string;
-  name: string;
+  walletName: string;
   value: number;      // valor total da carteira
   changePct: number;  // variação % ex: 0.125 => 12.5%
   assets: IAsset[];
-  createdAt: string;  // ISO date
+  updatedAt: string
 }
 
 const toBRL = (n: number) =>
@@ -29,7 +29,7 @@ const Carteiras = () => {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-        api("/api/investments").then((response) => {
+        api("/api/investments/").then((response) => {
             console.log("API response:", response);
     
             let data = [];
@@ -44,7 +44,15 @@ const Carteiras = () => {
 
     }, []);
 
-  const filtered = useMemo(() =>portfolios.filter((p) =>p.name.toLowerCase().includes(query.toLowerCase())),[portfolios, query]);
+  const filtered = useMemo(
+    () =>
+      portfolios.filter(
+        (p) =>
+          typeof p.walletName === "string" &&
+          p.walletName.toLowerCase().includes(query.toLowerCase())
+      ),
+    [portfolios, query]
+  );
 
   const totalValue = useMemo(() => portfolios.reduce((acc, p) => acc + (p.value || 0), 0),[portfolios]);
 
@@ -98,52 +106,26 @@ const Carteiras = () => {
       </div>
 
       <div className="wallets-grid">
-          {filtered.length === 0 ? (
-    <article className="wallet-card add-wallet-card">
-      <header className="wallet-card-head">
-        <h4 className="wallet-name">Nenhuma carteira encontrada</h4>
-      </header>
-      
-      <button className="add-wallet-btn">+ Adicionar carteira</button>
-    </article>
-  ) : (
-    filtered.map((w) => (
-      <article key={w.id} className="wallet-card">
-        <header className="wallet-card-head">
-          <h4 className="wallet-name">{w.name}</h4>
-          <span
-            className={`wallet-badge ${w.changePct >= 0 ? "up" : "down"}`}
-          >
-            {pct(w.changePct)}
-          </span>
-        </header>
-
-        <p className="wallet-value">{toBRL(w.value)}</p>
-
-        <div className="wallet-assets">
-          <span className="assets-label">
-            Ativos ({w.assets.length})
-          </span>
-          <div className="assets-chips">
-            {w.assets.slice(0, 6).map((a, i) => (
-              <span key={i} className="asset-chip">
-                {a.code}
+        {filtered.map((w) => (
+          <article key={w.id} className="wallet-card">
+            <header className="wallet-card-head">
+              <h4 className="wallet-name">{w.walletName}</h4>
+              <p>{w.updatedAt ? new Date(w.updatedAt).toLocaleString() : "Nenhuma atualização"}</p>
+            </header>
+            <div className="wallet-assets">
+              <span className="assets-label">
+                Ativos ({w.assets?.length || 0})
               </span>
-            ))}
-          </div>
-        </div>
-
-        <footer className="wallet-footer">
-          <span className="created-at">
-            Criada em{" "}
-            {new Date(w.createdAt).toLocaleDateString("pt-BR")}
-          </span>
-          <span className="dot" aria-hidden="true" />
-        </footer>
-      </article>
-    ))
-  )}
-
+              <div className="assets-chips">
+                {(w.assets || []).map((a, i) => (
+                  <span key={i} className="asset-chip">
+                    {a.code}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   );

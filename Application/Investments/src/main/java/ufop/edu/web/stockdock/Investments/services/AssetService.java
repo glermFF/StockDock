@@ -15,13 +15,16 @@ import ufop.edu.web.stockdock.Investments.dtos.Assets.SimpleAssetDTO;
 import ufop.edu.web.stockdock.Investments.dtos.Assets.UpdateAssetPriceDTO;
 import ufop.edu.web.stockdock.Investments.enums.AssetEnumType;
 import ufop.edu.web.stockdock.Investments.models.AssetModel;
+import ufop.edu.web.stockdock.Investments.models.WalletModel;
 import ufop.edu.web.stockdock.Investments.repositories.IAssetRepository;
+import ufop.edu.web.stockdock.Investments.repositories.IWalletRepository;
 
 @Service
 @AllArgsConstructor
 public class AssetService {
     
     private final IAssetRepository assetRepository;
+    private final IWalletRepository walletRepository;
 
     public List<SimpleAssetDTO> getAllAssets(){
 
@@ -39,8 +42,12 @@ public class AssetService {
     public SimpleAssetDTO createAsset(CreateAssetDTO createAssetDTO){
 
         AssetDomain domain = AssetConverter.toAssetDoamDomain(createAssetDTO);
-        AssetModel model = AssetConverter.toAssetModel(domain);
 
+        WalletModel wallet = walletRepository.findById(domain.getWallet()).orElseThrow(() -> new RuntimeException("Carteira não encontrada"));
+
+        AssetModel model = AssetConverter.toAssetModel(domain);
+        model.setWallet(wallet);
+        
         return AssetConverter.toAssetDTO(assetRepository.save(model));
     }
 

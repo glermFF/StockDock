@@ -20,7 +20,7 @@ import ufop.edu.web.stockdock.Investments.dtos.Assets.UpdateAssetPriceDTO;
 import ufop.edu.web.stockdock.Investments.enums.AssetEnumType;
 import ufop.edu.web.stockdock.Investments.services.AssetService;
 
-@RequestMapping("/ivestments_asset")
+@RequestMapping("/investments_asset")
 @RestController
 @AllArgsConstructor
 public class AssetController {

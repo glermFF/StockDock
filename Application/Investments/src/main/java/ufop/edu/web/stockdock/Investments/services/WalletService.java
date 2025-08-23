@@ -6,12 +6,15 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
+import ufop.edu.web.stockdock.Investments.controllers.AssetController;
+import ufop.edu.web.stockdock.Investments.converters.AssetConverter;
 import ufop.edu.web.stockdock.Investments.converters.WalletConverter;
 import ufop.edu.web.stockdock.Investments.domains.WalletDomain;
 import ufop.edu.web.stockdock.Investments.domains.usecases.UpdateWalletNameUsecase;
 import ufop.edu.web.stockdock.Investments.dtos.CreateWalletDTO;
 import ufop.edu.web.stockdock.Investments.dtos.DeleteWalletDTO;
 import ufop.edu.web.stockdock.Investments.dtos.SimpleWalletDTO;
+import ufop.edu.web.stockdock.Investments.dtos.UpdateWalletDTO;
 import ufop.edu.web.stockdock.Investments.dtos.UpdateWalletName;
 import ufop.edu.web.stockdock.Investments.models.WalletModel;
 import ufop.edu.web.stockdock.Investments.repositories.IWalletRepository;
@@ -35,6 +38,21 @@ public class WalletService {
         WalletModel model = WalletConverter.toWalletModel(domain);
 
         return WalletConverter.toWalletDTO(walletRepository.save(model));
+    }
+
+    public SimpleWalletDTO updateWallet(UpdateWalletDTO updateWalletDTO){
+
+        Optional<WalletModel> optional = walletRepository.findById(updateWalletDTO.getId());
+
+        WalletModel model = optional.get();
+        if (updateWalletDTO.getAssets() != null) {
+            model.setAssets(updateWalletDTO.getAssets().stream().map(AssetConverter::toAssetModel).toList());
+        }
+
+        model.setUpdatedAt(updateWalletDTO.getUpdatedAt() != null ? updateWalletDTO.getUpdatedAt() : java.time.LocalDateTime.now());
+
+        WalletModel updated = walletRepository.save(model);
+        return WalletConverter.toWalletDTO(updated);
     }
 
     public SimpleWalletDTO updateWalletName(UpdateWalletName updateWalletName){

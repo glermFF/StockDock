@@ -1,4 +1,4 @@
-const SERVER = 'http://localhost:8888';
+const SERVER = 'http://localhost:7000';
 
 async function api(endpoint: string, config?: RequestInit){
     console.log(`Endpoint: ${SERVER}${endpoint}`)

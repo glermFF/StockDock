@@ -4,7 +4,7 @@ import Content from "../components/layout/Content"
 
 export const routes = createBrowserRouter([
     {
-        path: "/investments",
+        path: "/",
         element: <Content/>,
         children:[
             {path: "/investments", element: <ListCarteiras/>}

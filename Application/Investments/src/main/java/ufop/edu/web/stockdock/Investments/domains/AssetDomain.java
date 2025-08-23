@@ -22,6 +22,8 @@ public class AssetDomain {
 
     private AssetEnumType type;
 
+    private UUID wallet;
+
     private Integer quantity;
 
     private Double purchasedPrice;

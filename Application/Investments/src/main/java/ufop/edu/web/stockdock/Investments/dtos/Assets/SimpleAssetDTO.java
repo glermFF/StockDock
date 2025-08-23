@@ -5,4 +5,4 @@ import java.util.UUID;
 
 import ufop.edu.web.stockdock.Investments.enums.AssetEnumType;
 
-public record SimpleAssetDTO(UUID id, String name, AssetEnumType type, Integer quantity, Double purchasedPrice, LocalDateTime purchasedAt) {}
+public record SimpleAssetDTO(UUID id, String name, AssetEnumType type, UUID wallet, Integer quantity, Double purchasedPrice, LocalDateTime purchasedAt) {}

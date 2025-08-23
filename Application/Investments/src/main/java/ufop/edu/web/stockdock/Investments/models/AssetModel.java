@@ -3,12 +3,16 @@ package ufop.edu.web.stockdock.Investments.models;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -37,6 +41,11 @@ public class AssetModel {
 
     @Enumerated(EnumType.STRING)
     private AssetEnumType type;
+
+    @ManyToOne
+    @JoinColumn(name = "wallet_id")
+    @JsonBackReference
+    private WalletModel wallet;
 
     private Integer quantity;
 

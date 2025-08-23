@@ -1,14 +1,14 @@
 package ufop.edu.web.stockdock.Investments.models;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import lombok.AllArgsConstructor;
@@ -34,6 +34,9 @@ public class WalletModel {
     private String walletName;
 
     private WalletEnumType type;
+
+    @OneToMany(mappedBy = "wallet")
+    private List<AssetModel> assets;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
