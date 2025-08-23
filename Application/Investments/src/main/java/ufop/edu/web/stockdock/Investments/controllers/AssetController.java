@@ -18,7 +18,6 @@ import ufop.edu.web.stockdock.Investments.dtos.Assets.RemoveAssetDTO;
 import ufop.edu.web.stockdock.Investments.dtos.Assets.SimpleAssetDTO;
 import ufop.edu.web.stockdock.Investments.dtos.Assets.UpdateAssetPriceDTO;
 import ufop.edu.web.stockdock.Investments.enums.AssetEnumType;
-import ufop.edu.web.stockdock.Investments.models.AssetModel;
 import ufop.edu.web.stockdock.Investments.services.AssetService;
 
 @RequestMapping("/ivestments_asset")

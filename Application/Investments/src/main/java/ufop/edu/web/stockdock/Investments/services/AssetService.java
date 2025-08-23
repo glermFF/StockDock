@@ -49,10 +49,10 @@ public class AssetService {
         Optional<AssetModel> optional = assetRepository.findById(updateAssetPriceDTO.getId());
         AssetModel model = optional.get();
 
-        UpdateAssetPriceUseCase useCase = new UpdateAssetPriceUseCase(model.getId(), updateAssetPriceDTO.getId(), model.getCurrentPrice(), updateAssetPriceDTO.getPriceModel());
+        UpdateAssetPriceUseCase useCase = new UpdateAssetPriceUseCase(model.getId(), updateAssetPriceDTO.getId(), model.getPurchasedPrice(), updateAssetPriceDTO.getPriceModel());
         useCase.validate();
 
-        model.setCurrentPrice(updateAssetPriceDTO.getNewPrice());
+        model.setPurchasedPrice(updateAssetPriceDTO.getNewPrice());
 
         return AssetConverter.toAssetDTO(assetRepository.save(model));
     }

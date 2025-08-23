@@ -22,7 +22,9 @@ public class AssetDomain {
 
     private AssetEnumType type;
 
-    private Double currentPrice;
+    private Integer quantity;
+
+    private Double purchasedPrice;
 
     private LocalDateTime purchasedAt;
 }
