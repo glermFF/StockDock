@@ -7,8 +7,7 @@ services:
       - POSTGRES_USER=psql-stockDock
       - POSTGRES_PASSWORD=stockpsql
     volumes:
-      - ./1-users-database.sql:/docker-entrypoint-initdb.d/1.sql
-      - ./2-wallets-database.sql:/docker-entrypoint-initdb.d/2.sql
+      - ./1-investments-database.sql:/docker-entrypoint-initdb.d/1.sql
     networks:
       - backend
   pgadmin:

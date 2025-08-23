@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './styles/SideBar.css';
 
 function SideBar() {
@@ -13,7 +14,7 @@ function SideBar() {
           <nav className="nav-list">
             <button className="nav-item active">
               <span className="nav-ico">📂</span>
-              <span>Carteira</span>
+                <Link to="/investments">Carteiras</Link>
             </button>
             <button className="nav-item">
               <span className="nav-ico">📈</span>
