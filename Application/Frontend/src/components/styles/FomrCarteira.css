@@ -1,0 +1,153 @@
+.form-carteira-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-carteira-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+  z-index: 1001;
+}
+
+.form-carteira {
+  position: relative;
+  z-index: 1002;
+  background: var(--mi-panel);
+  border: 1px solid var(--mi-border);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.35);
+  padding: 32px 28px 24px 28px;
+  min-width: 300px;
+  max-width: 95vw;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  animation: fadeInScale .18s cubic-bezier(.4,1.2,.6,1) backwards;
+}
+
+.form-carteira-inputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#walletName{
+    width: 250px;
+}
+
+#walletType{
+    width: 150px;
+}
+
+.form-carteira select {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 9px;
+  border: 1px solid var(--mi-border);
+  background: var(--mi-surface);
+  color: var(--mi-text);
+  font-size: 15px;
+  margin-bottom: 8px;
+  outline: none;
+  transition: border-color .2s, background .2s, box-shadow .2s;
+}
+
+.form-carteira select:focus {
+  background: var(--mi-surface-2);
+  border-color: color-mix(in oklab, var(--mi-border), white 8%);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, .12);
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.form-carteira h3 {
+  margin: 0 0 12px 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--mi-green);
+}
+
+.form-carteira label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--mi-muted);
+  margin-bottom: 4px;
+  display: block;
+}
+
+.form-carteira input[type="text"] {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 9px;
+  border: 1px solid var(--mi-border);
+  background: var(--mi-surface);
+  color: var(--mi-text);
+  font-size: 15px;
+  margin-bottom: 8px;
+  outline: none;
+  transition: border-color .2s, background .2s, box-shadow .2s;
+}
+.form-carteira input[type="text"]:focus {
+  background: var(--mi-surface-2);
+  border-color: color-mix(in oklab, var(--mi-border), white 8%);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, .12);
+}
+
+.form-error {
+  color: #ef4444;
+  background: #fff0f0;
+  border: 1px solid #ef4444;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.form-actions button {
+  padding: 8px 18px;
+  border-radius: 9px;
+  border: 1px solid var(--mi-border);
+  background: var(--mi-surface);
+  color: var(--mi-text);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background .18s, border-color .18s, color .18s;
+}
+
+.form-actions button[type="submit"] {
+  background: linear-gradient(180deg, var(--mi-green), color-mix(in oklab, var(--mi-green), black 8%));
+  color: #02130a;
+  border-color: color-mix(in oklab, var(--mi-green), black 20%);
+  box-shadow: 0 6px 18px color-mix(in oklab, var(--mi-green), black 70%);
+}
+
+.form-actions button[type="submit"]:hover {
+  filter: brightness(1.04);
+}
+
+.form-actions button[type="button"]:hover {
+  background: color-mix(in oklab, var(--mi-border), white 10%);
+}

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import api from "../../services/api"
 import "../styles/Carteiras.css"
+import FormCarteira from "../forms/FormCarteira";
 
 export interface IAsset {
   name: string
@@ -28,9 +29,10 @@ const percentual = (p: number) =>`${p >= 0 ? "+" : ""}${(p * 100).toFixed(1)}%`;
 const Carteiras = () => {
   const [portfolios, setPortfolios] = useState<IPortfolio[]>([]);
   const [query, setQuery] = useState("");
+  const [showForm, setShowForm] = useState(false)
 
   useEffect(() => {
-        api("/api/investments/").then((response) => {
+        api("/api/investments/", {}).then((response) => {
             console.log("API response:", response);
     
             let data = [];
@@ -68,7 +70,7 @@ const getWalletChangePct = (wallet: IPortfolio) => {
 
     const totalInvestido = wallet.asset.reduce((sum, a) => sum + (a.purchasedPrice || 0), 0);
     const totalAtual = wallet.asset.reduce((sum, a) => sum + (a.purchasedPrice || 0), 0);
-    
+
     if (totalInvestido === 0) return 0;
     return (totalAtual - totalInvestido) / totalInvestido;
   };
@@ -101,7 +103,7 @@ const getWalletChangePct = (wallet: IPortfolio) => {
           />
         </div>
 
-        <button type="button" className="wallet-btn add"/** onClick={() => setShowForm(s => !s)} */>
+        <button type="button" className="wallet-btn add" onClick={() => setShowForm(s => !s)} >
           <span className="plus">+</span> Nova Carteira
         </button>
       </div>
@@ -153,6 +155,23 @@ const getWalletChangePct = (wallet: IPortfolio) => {
           </article>
         ))}
       </div>
+
+      {showForm && (
+  <FormCarteira
+    onClose={() => setShowForm(false)}
+    onCreated={() => {
+      api("/api/investments/", {}).then((response) => {
+        let data = [];
+        if (Array.isArray(response)) {
+          data = response;
+        } else if (Array.isArray(response?.data)) {
+          data = response.data;
+        }
+        setPortfolios(data);
+      });
+    }}
+  />
+)}
     </div>
   );
 };

@@ -15,7 +15,7 @@ public class WalletConverter {
     }
 
     public static WalletModel toWalletModel(WalletDomain walletDomain){
-        return WalletModel.builder().id(walletDomain.getId()).walletName(walletDomain.getWalletName()).type(walletDomain.getType()).build();
+        return WalletModel.builder().id(walletDomain.getId()).walletName(walletDomain.getWalletName()).type(walletDomain.getType()).assets(new java.util.ArrayList<>()).build();
     }
 
     public static WalletDomain toWalletDomain(CreateWalletDTO createWalletDTO){
