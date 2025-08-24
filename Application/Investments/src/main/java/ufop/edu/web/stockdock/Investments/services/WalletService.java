@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
-import ufop.edu.web.stockdock.Investments.controllers.AssetController;
 import ufop.edu.web.stockdock.Investments.converters.AssetConverter;
 import ufop.edu.web.stockdock.Investments.converters.WalletConverter;
 import ufop.edu.web.stockdock.Investments.domains.WalletDomain;

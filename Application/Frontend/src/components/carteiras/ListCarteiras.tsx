@@ -2,18 +2,20 @@ import { useEffect, useMemo, useState } from "react";
 import api from "../../services/api"
 import "../styles/Carteiras.css"
 
-// Tipos
 export interface IAsset {
-  code: string; // ex: BTC, ETH, PETR4
+  name: string
+  type: string
+  quantity: number
+  purchasedPrice: number
 }
 
 export interface IPortfolio {
   id: string;
   walletName: string;
-  value: number;      // valor total da carteira
-  changePct: number;  // variação % ex: 0.125 => 12.5%
-  assets: IAsset[];
-  updatedAt: string
+  value: number;
+  changePct: number;
+  asset: IAsset[];
+  updatedAt: string;
 }
 
 const toBRL = (n: number) =>
@@ -21,8 +23,7 @@ const toBRL = (n: number) =>
     n || 0
   );
 
-const pct = (p: number) =>
-  `${p >= 0 ? "+" : ""}${(p * 100).toFixed(1)}%`;
+const percentual = (p: number) =>`${p >= 0 ? "+" : ""}${(p * 100).toFixed(1)}%`;
 
 const Carteiras = () => {
   const [portfolios, setPortfolios] = useState<IPortfolio[]>([]);
@@ -44,8 +45,7 @@ const Carteiras = () => {
 
     }, []);
 
-  const filtered = useMemo(
-    () =>
+  const filtered = useMemo(() =>
       portfolios.filter(
         (p) =>
           typeof p.walletName === "string" &&
@@ -54,13 +54,37 @@ const Carteiras = () => {
     [portfolios, query]
   );
 
-  const totalValue = useMemo(() => portfolios.reduce((acc, p) => acc + (p.value || 0), 0),[portfolios]);
+  const totalValue = useMemo(() =>
+      portfolios.reduce(
+        (acc, p) =>
+          acc +
+          (Array.isArray(p.asset)
+            ? p.asset.reduce((sum, a) => sum + (a.purchasedPrice || 0), 0)
+            : 0),
+        0), [portfolios]);
+
+const getWalletChangePct = (wallet: IPortfolio) => {
+    if (!Array.isArray(wallet.asset) || wallet.asset.length === 0) return 0;
+
+    const totalInvestido = wallet.asset.reduce((sum, a) => sum + (a.purchasedPrice || 0), 0);
+    const totalAtual = wallet.asset.reduce((sum, a) => sum + (a.purchasedPrice || 0), 0);
+    
+    if (totalInvestido === 0) return 0;
+    return (totalAtual - totalInvestido) / totalInvestido;
+  };
 
   const avgChange = useMemo(() => {
     if (!portfolios.length) return 0;
-    const sum = portfolios.reduce((acc, p) => acc + (p.changePct || 0), 0);
+    const sum = portfolios.reduce((acc, p) => acc + (getWalletChangePct(p) || 0), 0);
     return sum / portfolios.length;
   }, [portfolios]);
+
+  const getWalletTotal = (wallet: IPortfolio) => {
+    if (!Array.isArray(wallet.asset)) return 0;
+    return wallet.asset.reduce((sum, a) => sum + (a.purchasedPrice || 0), 0);
+  };
+
+  
 
   return (
     <div className="wallets-container app-container">
@@ -100,7 +124,7 @@ const Carteiras = () => {
               avgChange >= 0 ? "pos" : "neg"
             }`}
           >
-            {pct(avgChange)}
+            {percentual(avgChange)}
           </h3>
         </article>
       </div>
@@ -110,16 +134,18 @@ const Carteiras = () => {
           <article key={w.id} className="wallet-card">
             <header className="wallet-card-head">
               <h4 className="wallet-name">{w.walletName}</h4>
-              <p>{w.updatedAt ? new Date(w.updatedAt).toLocaleString() : "Nenhuma atualização"}</p>
+              <span className="wallet-total">
+                {toBRL(getWalletTotal(w))}
+              </span>
             </header>
             <div className="wallet-assets">
               <span className="assets-label">
-                Ativos ({w.assets?.length || 0})
+                Ativos ({w.asset?.length || 0})
               </span>
               <div className="assets-chips">
-                {(w.assets || []).map((a, i) => (
+                {(w.asset || []).map((a, i) => (
                   <span key={i} className="asset-chip">
-                    {a.code}
+                    {a.name} ({a.type})
                   </span>
                 ))}
               </div>

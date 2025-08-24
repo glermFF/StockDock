@@ -11,7 +11,7 @@ import ufop.edu.web.stockdock.Investments.models.WalletModel;
 public class WalletConverter {
     
     public static SimpleWalletDTO toWalletDTO(WalletModel walletModel){
-        return new SimpleWalletDTO(walletModel.getId(), walletModel.getWalletName(), walletModel.getType(), walletModel.getAssets().stream().map(asset -> asset.getType()).toList());
+        return new SimpleWalletDTO(walletModel.getId(), walletModel.getWalletName(), walletModel.getType(), walletModel.getAssets().stream().map(AssetConverter::toAssetDTO).toList());
     }
 
     public static WalletModel toWalletModel(WalletDomain walletDomain){

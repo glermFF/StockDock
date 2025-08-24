@@ -140,9 +140,13 @@
 
 .wallet-card-head {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
+  align-items: center;
+}
+
+.wallet-total {
+  font-weight: bold;
+  color: #2e7d32;
 }
 
 .wallet-name {
