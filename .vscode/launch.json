@@ -1,0 +1,34 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-NameServerApplication<NameServer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "ufop.edu.web.stockdock.NameServer.NameServerApplication",
+            "projectName": "NameServer",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-InvestmentsApplication<Investments>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "ufop.edu.web.stockdock.Investments.InvestmentsApplication",
+            "projectName": "Investments",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GatewayApplication<Gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "ufop.edu.web.stockdock.Gateway.GatewayApplication",
+            "projectName": "Gateway",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
