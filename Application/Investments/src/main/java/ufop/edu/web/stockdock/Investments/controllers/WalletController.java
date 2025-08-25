@@ -63,7 +63,7 @@ public class WalletController {
         return ResponseEntity.ok(walletDTO);
     }
 
-    @DeleteMapping("/remove")
+    @DeleteMapping("/remove/{id}")
     public ResponseEntity<Object> removeWallet(@RequestBody DeleteWalletDTO deleteWalletDTO){
 
         walletService.removeWallet(deleteWalletDTO);

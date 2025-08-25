@@ -102,22 +102,11 @@
 
 /* card de carteira */
 
-.add-wallet-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 2px dashed #ccc;
-  height: 90%;
-  text-align: center;
-
-  transition: border-color 0.2s ease;
-}
-
-.add-wallet-btn {
-  margin-top: 1rem;
+.rmv-wallet-btn {
+  width: 50%;
+  margin: 0 5.95rem;
   padding: 0.6rem 1rem;
-  background-color: #4cafef;
+  background-color: #e93740;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -125,11 +114,16 @@
   font-weight: 500;
 }
 
-.add-wallet-btn:hover {
-  background-color: #399dd9;
+.rmv-wallet-btn:hover {
+  background-color: #ef4444;
 }
 
 .wallet-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 20px;
+
   background: linear-gradient(180deg, rgba(255,255,255,.02), transparent 50%),
     var(--mi-panel);
   border: 1px solid var(--mi-border);
@@ -140,8 +134,10 @@
 
 .wallet-card-head {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+
 }
 
 .wallet-total {

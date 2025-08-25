@@ -17,12 +17,12 @@ public class GatewayApiConfig {
         
         return builder.routes()
         .route("api-investments", 
-            p -> p.path("/api/investments").or().method("GET").or().method("POST")
+            p -> p.path("/api/investments").or().method("GET").or().method("POST").or().method("PUT").or().method("DELETE")
             .filters(f -> f.rewritePath("/api/investments", "/investments_wallet"))
             .uri("lb://investments-service")
         )
         .route("api-assets", 
-            p -> p .path("/api/assets/").or().method("GET").or().method("POST")
+            p -> p .path("/api/assets/").or().method("GET")
             .filters(f -> f.rewritePath("/api/assets", "/investments_asset"))
             .uri("lb://investments-service")
         )

@@ -86,6 +86,26 @@ const getWalletChangePct = (wallet: IPortfolio) => {
     return wallet.asset.reduce((sum, a) => sum + (a.purchasedPrice || 0), 0);
   };
 
+  const removeWallet = async (id: string) => {
+    if (!window.confirm("Remover esta carteira? Esta ação não pode ser desfeita.")) return;
+    
+      await api(`/api/investments/remove/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({id})
+      });
+      
+
+      await api("/api/investments/", {}).then((response) => {
+         let data = [];
+         if (Array.isArray(response)) {
+           data = response;
+         } else if (Array.isArray(response?.data)) {
+           data = response.data;
+         }
+         setPortfolios(data);
+      })
+  };
   
 
   return (
@@ -152,6 +172,9 @@ const getWalletChangePct = (wallet: IPortfolio) => {
                 ))}
               </div>
             </div>
+              <button type="button" className="rmv-wallet-btn" onClick={() => removeWallet(w.id)}>
+                Remover
+              </button>
           </article>
         ))}
       </div>
