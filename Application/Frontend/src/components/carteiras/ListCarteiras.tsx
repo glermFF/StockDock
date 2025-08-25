@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import api from "../../services/api"
 import "../styles/Carteiras.css"
 import FormCarteira from "../forms/FormCarteira";
+import EditFormCarteira from "../forms/EditFormCarteira";
 
 export interface IAsset {
   name: string
@@ -30,6 +31,7 @@ const Carteiras = () => {
   const [portfolios, setPortfolios] = useState<IPortfolio[]>([]);
   const [query, setQuery] = useState("");
   const [showForm, setShowForm] = useState(false)
+  const [editingWallet, setEditingWallet] = useState<IPortfolio | false>(false);
 
   useEffect(() => {
         api("/api/investments/", {}).then((response) => {
@@ -172,12 +174,18 @@ const getWalletChangePct = (wallet: IPortfolio) => {
                 ))}
               </div>
             </div>
+            <div className="wallet-btns">
               <button type="button" className="rmv-wallet-btn" onClick={() => removeWallet(w.id)}>
                 Remover
               </button>
+              <button type="button" className="edit-wallet-btn" onClick={() => setEditingWallet(w)}>
+                Editar
+              </button>
+            </div>
           </article>
         ))}
       </div>
+
 
       {showForm && (
   <FormCarteira
@@ -195,7 +203,25 @@ const getWalletChangePct = (wallet: IPortfolio) => {
     }}
   />
 )}
-    </div>
+
+        {editingWallet && (
+    <EditFormCarteira
+        wallet={editingWallet}
+        onClose={() => setEditingWallet(false)}
+        onSaved={() => {
+    api("/api/investments/", {}).then((response) => {
+      let data = [];
+      if (Array.isArray(response)) {
+        data = response;
+      } else if (Array.isArray(response?.data)) {
+        data = response.data;
+      }
+      setPortfolios(data);
+    });
+        }}
+      />
+    )}
+  </div>
   );
 };
 

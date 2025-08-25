@@ -1,0 +1,159 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.28);
+  z-index: 1198;
+}
+
+.modal-content {
+  position: relative;
+  z-index: 1199;
+  background: var(--mi-panel);
+  border: 1px solid var(--mi-border);
+  border-radius: 16px;
+  box-shadow: 0 10px 32px rgba(0,0,0,.36);
+  padding: 28px;
+  min-width: 320px;
+  max-width: 94vw;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeInScale .18s cubic-bezier(.4,1.2,.6,1) backwards;
+}
+
+/* Cabeçalho */
+.modal-content h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--mi-green);
+}
+
+/* Labels e inputs */
+.modal-content label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--mi-muted);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="number"],
+.modal-content textarea,
+.modal-content select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--mi-border);
+  background: var(--mi-surface);
+  color: var(--mi-text);
+  font-size: 15px;
+  outline: none;
+  transition: border-color .18s, background .18s, box-shadow .18s;
+}
+
+.modal-content input[type="text"]:focus,
+.modal-content textarea:focus,
+.modal-content select:focus {
+  background: var(--mi-surface-2);
+  border-color: color-mix(in oklab, var(--mi-border), white 8%);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, .12);
+}
+
+/* Lista de ativos */
+.assets-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.asset-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: color-mix(in oklab, var(--mi-surface), white 2%);
+  border: 1px solid transparent;
+}
+
+.asset-row span {
+  color: var(--mi-text);
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* botão remover ativo */
+.asset-row button {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--mi-border);
+  background: transparent;
+  color: var(--mi-text);
+  cursor: pointer;
+  font-size: 13px;
+  transition: background .12s, border-color .12s;
+}
+
+.asset-row button:hover {
+  background: color-mix(in oklab, var(--mi-border), white 8%);
+}
+
+/* ações do modal */
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+.modal-actions button {
+  padding: 8px 16px;
+  border-radius: 9px;
+  border: 1px solid var(--mi-border);
+  background: var(--mi-surface);
+  color: var(--mi-text);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background .18s, border-color .18s, color .18s;
+}
+
+.modal-actions button[type="submit"] {
+  background: linear-gradient(180deg, var(--mi-green), color-mix(in oklab, var(--mi-green), black 8%));
+  color: #02130a;
+  border-color: color-mix(in oklab, var(--mi-green), black 20%);
+  box-shadow: 0 6px 18px color-mix(in oklab, var(--mi-green), black 70%);
+}
+
+.modal-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

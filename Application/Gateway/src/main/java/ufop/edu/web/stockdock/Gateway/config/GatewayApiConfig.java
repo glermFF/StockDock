@@ -8,36 +8,36 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class GatewayApiConfig {
-    
+
     @Value("${gateway.frontend.uri}")
     private String uriFrontendService = "http://localhost:5173";
 
     @Bean
-    public RouteLocator gatewayRouter(RouteLocatorBuilder builder){
-        
+    public RouteLocator gatewayRouter(RouteLocatorBuilder builder) {
+
         return builder.routes()
-        .route("api-investments", 
-            p -> p.path("/api/investments").or().method("GET").or().method("POST").or().method("PUT").or().method("DELETE")
-            .filters(f -> f.rewritePath("/api/investments", "/investments_wallet"))
-            .uri("lb://investments-service")
-        )
-        .route("api-assets", 
-            p -> p .path("/api/assets/").or().method("GET")
-            .filters(f -> f.rewritePath("/api/assets", "/investments_asset"))
-            .uri("lb://investments-service")
-        )
-        .route("investments", p -> p 
-            .path("/investments_wallet/**")
-            .uri("lb://investments-service")
-        )
-        .route("investments", p -> p 
-            .path("/investments_asset/**")
-            .uri("lb://investments-service")
-        )
-        .route("frontend", p -> p 
-            .path("/***")
-            .uri(this.uriFrontendService)
-        )
-        .build();
+            .route("api-investments", p -> p
+                .path("/api/investments/**")
+                .filters(f -> f.rewritePath("/api/investments/(?<segment>.*)", "/investments_wallet/${segment}"))
+                .uri("lb://investments-service")
+            )
+            .route("api-assets", p -> p
+                .path("/api/assets/**")
+                .filters(f -> f.rewritePath("/api/assets/(?<segment>.*)", "/investments_asset/${segment}"))
+                .uri("lb://investments-service")
+            )
+            .route("wallet-internal", p -> p
+                .path("/investments_wallet/**")
+                .uri("lb://investments-service")
+            )
+            .route("asset-internal", p -> p
+                .path("/investments_asset/**")
+                .uri("lb://investments-service")
+            )
+            .route("frontend", p -> p
+                .path("/**")
+                .uri(this.uriFrontendService)
+            )
+            .build();
     }
 }
