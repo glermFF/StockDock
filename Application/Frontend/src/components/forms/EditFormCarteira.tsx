@@ -27,14 +27,13 @@ type Props = {
 function EditFormCarteira({ wallet, onClose, onSaved }: Props) {
   const [name, setName] = useState(wallet.walletName);
   const [assets, setAssets] = useState<IAsset[]>(wallet.asset || []);
-  const [assetType, setAssetType] = useState("")
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const tiposAtivos = [
     { value: "", label: "Selecione o tipo" },
-    { value: "CRIPTOS", label: "Criptomoeda" },
-    { value: "ACOES", label: "Ação" },
+    { value: "CRIPTO", label: "Criptomoeda" },
+    { value: "ACAO", label: "Ação" },
     { value: "FII", label: "FII" },
   ];
 
@@ -55,7 +54,6 @@ function EditFormCarteira({ wallet, onClose, onSaved }: Props) {
     }
   };
 
-  // Função para adicionar novo asset localmente
   const addAssetLocally = async () => {
     if (!newAsset.name.trim() || !newAsset.type.trim() || !newAsset.purchasedPrice) {
       setError("Preencha todos os campos do novo ativo.");

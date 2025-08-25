@@ -26,8 +26,6 @@ const toBRL = (n: number) =>
     n || 0
   );
 
-const percentual = (p: number) =>`${p >= 0 ? "+" : ""}${(p * 100).toFixed(1)}%`;
-
 const Carteiras = () => {
   const [portfolios, setPortfolios] = useState<IPortfolio[]>([]);
   const [query, setQuery] = useState("");
@@ -67,22 +65,6 @@ const Carteiras = () => {
             ? p.asset.reduce((sum, a) => sum + (a.purchasedPrice || 0), 0)
             : 0),
         0), [portfolios]);
-
-const getWalletChangePct = (wallet: IPortfolio) => {
-    if (!Array.isArray(wallet.asset) || wallet.asset.length === 0) return 0;
-
-    const totalInvestido = wallet.asset.reduce((sum, a) => sum + (a.purchasedPrice || 0), 0);
-    const totalAtual = wallet.asset.reduce((sum, a) => sum + (a.purchasedPrice || 0), 0);
-
-    if (totalInvestido === 0) return 0;
-    return (totalAtual - totalInvestido) / totalInvestido;
-  };
-
-  const avgChange = useMemo(() => {
-    if (!portfolios.length) return 0;
-    const sum = portfolios.reduce((acc, p) => acc + (getWalletChangePct(p) || 0), 0);
-    return sum / portfolios.length;
-  }, [portfolios]);
 
   const getWalletTotal = (wallet: IPortfolio) => {
     if (!Array.isArray(wallet.asset)) return 0;
@@ -141,17 +123,6 @@ const getWalletChangePct = (wallet: IPortfolio) => {
           <span className="stat-label">Valor Total</span>
           <h3 className="stat-value">{toBRL(totalValue)}</h3>
         </article>
-
-        {/* <article className="stat-card">
-          <span className="stat-label">Variação Média</span>
-          <h3
-            className={`stat-value ${
-              avgChange >= 0 ? "pos" : "neg"
-            }`}
-          >
-            {percentual(avgChange)}
-          </h3>
-        </article> */}
       </div>
 
       <div className="wallets-grid">
