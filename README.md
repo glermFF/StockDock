@@ -32,8 +32,6 @@ Application/
   ├── Gateway/          # API Gateway (Spring Cloud Gateway)
   ├── Investments/      # Serviço de carteiras e ativos
   ├── NameServer/       # Eureka Server (service discovery)
-  ├── User/             # Serviço de usuários
-  ├── Wallet/           # Serviço de carteiras (pode ser legado ou complementar)
   └── docker-compose.yml
 ```
 
