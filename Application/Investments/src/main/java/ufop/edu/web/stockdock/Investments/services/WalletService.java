@@ -41,9 +41,16 @@ public class WalletService {
 
     public SimpleWalletDTO updateWallet(UpdateWalletDTO updateWalletDTO){
 
-        Optional<WalletModel> optional = walletRepository.findById(updateWalletDTO.getId());
+        WalletDomain domain = WalletConverter.toWalletDomain(updateWalletDTO);
 
-        WalletModel model = optional.get();
+        Optional<WalletModel> optional = walletRepository.findById(updateWalletDTO.getId());
+          
+        if(optional.isEmpty()){
+            return null;
+        }
+
+        WalletModel model = WalletConverter.toWalletModel(domain);
+
         if (updateWalletDTO.getAssets() != null) {
             model.setAssets(updateWalletDTO.getAssets().stream().map(AssetConverter::toAssetModel).toList());
         }

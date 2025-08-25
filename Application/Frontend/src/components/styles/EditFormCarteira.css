@@ -43,7 +43,11 @@
   font-size: 14px;
   font-weight: 500;
   color: var(--mi-muted);
-  display: block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   margin-bottom: 6px;
 }
 
@@ -51,15 +55,16 @@
 .modal-content input[type="number"],
 .modal-content textarea,
 .modal-content select {
-  width: 100%;
+  width: 30%;
   padding: 10px 12px;
-  border-radius: 10px;
+  border-radius: 9px;
   border: 1px solid var(--mi-border);
   background: var(--mi-surface);
   color: var(--mi-text);
   font-size: 15px;
+  margin-bottom: 8px;
   outline: none;
-  transition: border-color .18s, background .18s, box-shadow .18s;
+  transition: border-color .2s, background .2s, box-shadow .2s;
 }
 
 .modal-content input[type="text"]:focus,
@@ -74,9 +79,11 @@
 .assets-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 10px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 8px;
 }
 
@@ -116,10 +123,44 @@
 }
 
 /* ações do modal */
+
+.add-asset-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+
+.add-asset-form input[type="text"]{
+  width: 70%;
+}
+
+.add-asset-form input[type="number"]{
+  width: 70%;
+}
+
+.add-asset-form select{
+  width: 78%;
+}
+
+.add-asset-form button[type="button"]{
+  padding: 8px 16px;
+  margin: 20px 0 30px 0;
+  border-radius: 9px;
+  border: 1px solid var(--mi-border);
+  background: var(--mi-surface);
+  color: var(--mi-text);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background .18s, border-color .18s, color .18s;
+}
+
 .modal-actions {
   display: flex;
   gap: 12px;
-  justify-content: flex-end;
+  justify-content: center;
   margin-top: 6px;
 }
 

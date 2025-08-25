@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ufop.edu.web.stockdock.Investments.dtos.Assets.SimpleAssetDTO;
+import ufop.edu.web.stockdock.Investments.enums.WalletEnumType;
 
 @Getter
 @Setter
@@ -20,6 +21,8 @@ public class UpdateWalletDTO {
     private String walletName;
 
     List<SimpleAssetDTO> assets;
+
+    private WalletEnumType type;
 
     private LocalDateTime updatedAt;
 }

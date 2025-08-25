@@ -14,6 +14,7 @@ export interface IAsset {
 export interface IPortfolio {
   id: string;
   walletName: string;
+  type: string
   value: number;
   changePct: number;
   asset: IAsset[];
@@ -141,7 +142,7 @@ const getWalletChangePct = (wallet: IPortfolio) => {
           <h3 className="stat-value">{toBRL(totalValue)}</h3>
         </article>
 
-        <article className="stat-card">
+        {/* <article className="stat-card">
           <span className="stat-label">Variação Média</span>
           <h3
             className={`stat-value ${
@@ -150,7 +151,7 @@ const getWalletChangePct = (wallet: IPortfolio) => {
           >
             {percentual(avgChange)}
           </h3>
-        </article>
+        </article> */}
       </div>
 
       <div className="wallets-grid">
@@ -161,6 +162,7 @@ const getWalletChangePct = (wallet: IPortfolio) => {
               <span className="wallet-total">
                 {toBRL(getWalletTotal(w))}
               </span>
+              <span className="wallet-name">{w.type}</span>
             </header>
             <div className="wallet-assets">
               <span className="assets-label">

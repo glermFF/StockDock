@@ -29,6 +29,7 @@ function FormCarteira({ onClose, onCreated }: FormCarteiraProps) {
       setError("Defina um nome para a carteira");
       return;
     }
+    
     if (!walletType) {
       setError("Defina o tipo de investimento em foco");
       return;
@@ -39,7 +40,7 @@ function FormCarteira({ onClose, onCreated }: FormCarteiraProps) {
      await api("/api/investments/invest-new-wallet", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ walletName, walletType }),
+        body: JSON.stringify({ walletName, type: walletType }), // <-- aqui!
       });
 
       setWalletName("");

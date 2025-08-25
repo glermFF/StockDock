@@ -52,7 +52,7 @@ public class AssetService {
     }
 
     public SimpleAssetDTO updateAssetPrice(UpdateAssetPriceDTO updateAssetPriceDTO){
-
+        
         Optional<AssetModel> optional = assetRepository.findById(updateAssetPriceDTO.getId());
         AssetModel model = optional.get();
 
