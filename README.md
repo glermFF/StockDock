@@ -22,7 +22,7 @@ O **API Gateway** centraliza o acesso, roteando e autenticando as requisições.
 
 ### Modelo Arquitetural
 
-<img src="./Docs/Modelo-Projeto.png">
+<img src="./Docs/Captura de tela de 2025-08-25 11-39-00.png">
 
 ### Estrutura de Pastas
 
